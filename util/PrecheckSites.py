@@ -28,7 +28,8 @@ class PrecheckSites(object):
         requests.adapters.DEFAULT_RETRIES = 2
         for url in self.url_list:
             try:
-                response = requests.get(url)
+                ssl._create_default_https_context = ssl._create_unverified_context
+                response = requests.get(url, verify=False)
                 if response.status_code == 200:
                     log.info("url: %s is active"%url)
                 else:
