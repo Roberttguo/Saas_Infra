@@ -12,3 +12,6 @@ HCXSAAS_SRV_ONBOARD_REQ = BASE_HCX_SAAS_API+"/site-onboarding/request-registrati
 #For csp authotication
 CSP_TOKEN_URI="/csp/gateway/am/api/auth/api-tokens/authorize?refresh_token=%s"
 CSP_URL="console-stg.cloud.vmware.com"
+
+
+sites = [("onpremhcm1","onpremvc1"), ("hmva","vc1")]
