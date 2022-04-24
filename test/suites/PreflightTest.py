@@ -1,5 +1,8 @@
 import json
 import os
+import sys
+import logging
+import unittest
 import ssl
 import time
 import unittest
@@ -14,6 +17,14 @@ from util.PrecheckSites import PrecheckSites
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), '../testdata/testdata.json')
 TESTBED_FILENAME = os.path.join(os.path.dirname(__file__), '../testdata/testbed_info.json')
 
+"""Set up local logger"""
+logger = logging.getLogger(os.path.basename(__file__))
+logger.setLevel(logging.DEBUG)
+format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch = logging.StreamHandler(sys.stdout)
+ch.setFormatter(format)
+logger.addHandler(ch)
+"""Set up local logger End"""
 
 class PreflightTestCase(unittest.TestCase):
 
@@ -43,8 +54,6 @@ class PreflightTestCase(unittest.TestCase):
         self.assertEqual(True, result)
 
 
-
-    #@unittest.skipIf(not (this.precheck), "precheck failed.")
     def test_Dev_Stack_Cleanup(self):
         obj=HCXSaasRestExt(self.testdata["dev_stack"], self.testdata["csp_url"],self.testdata["api_token"])
         result = False
@@ -80,22 +89,10 @@ def fake_description():
 
 
 if __name__ == '__main__':
-    #unittest.main()
-    #html_report_dir="\\report"
-    #outfile=file("report.html",'w')
-    #unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=html_report_dir))
-
-    #suite = unittest.TestLoader().loadTestsFromTestCase(PreflightTestCase)
-    #unittest.TextTestRunner(verbosity=2).run(suite)
-
-    #outfile = file("test_results.html", "w")
-    # Create the report file
     html_report = open('../../report/test_results.html', 'wb')
-    #print ("open file:", html_report)
     # Create the runner and set the file as output and higher verbosity
     ssl._create_default_https_context = ssl._create_unverified_context
     runner = HTMLTestRunner.HTMLTestRunner(stream=html_report, verbosity=2, attrs=fake_attrs(),
-
                                            description=fake_description())
 
     '''
@@ -115,9 +112,6 @@ if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(PreflightTestCase)
     # Run the suite
     runner.run(suite)
-    all=html_report.readlines()
-    #print ("html file content:", all)
-    #html_report.close()
 
 
     #HtmlTestRunner.main()
