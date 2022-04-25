@@ -26,5 +26,5 @@ class NetworkExtensionsTest(unittest.TestCase):
         pass
 
     def test_network_extension(self):
-        self.shortDescription="Dummy test."
+        """Dummy test."""
         self.assertEqual(True, True, "Dummy test.")
