@@ -22,7 +22,7 @@ logger.addHandler(ch)
 
 class NetworkExtensionsTest(unittest.TestCase):
 
-    def __init__(self):
+    def setUp(self):
         pass
 
     def test_network_extension(self):

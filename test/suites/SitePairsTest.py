@@ -22,9 +22,6 @@ logger.addHandler(ch)
 
 class SitePairsTest(unittest.TestCase):
 
-    def __init__(self):
-        pass
-
     def setUp(self):
         pass
 
