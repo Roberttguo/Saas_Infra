@@ -48,6 +48,7 @@ class PreflightTest(unittest.TestCase):
 
 
     def test_precheck_sites(self):
+        self.description = "precheck if all related sites are active."
         obj=PrecheckSites(self.urls)
         result=obj.checkUrls()
         self.precheck = result
@@ -55,6 +56,7 @@ class PreflightTest(unittest.TestCase):
 
 
     def test_Dev_Stack_Cleanup(self):
+        self.description="Remove sites from HCX Saas portal %s."% self.testdata["dev_stack"]
         obj=HCXSaasRestExt(self.testdata["dev_stack"], self.testdata["csp_url"],self.testdata["api_token"])
         result = False
         for _ in range(Constant.RETRY_CLEANUP):

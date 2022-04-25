@@ -20,7 +20,14 @@ logger.addHandler(ch)
 """Set up local logger End"""
 
 
-class SitePairsTest(object):
+class SitePairsTest(unittest.TestCase):
 
     def __init__(self):
         pass
+
+    def setUp(self):
+        pass
+
+    def test_pair_sites(self):
+        self.shortDescription("Dumy test for pairing sites.")
+        self.assertEqual(True, True, "Dummy test for pairing.")

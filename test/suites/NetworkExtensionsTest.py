@@ -20,7 +20,11 @@ logger.addHandler(ch)
 """Set up local logger End"""
 
 
-class NetworkExtensionsTest(object):
+class NetworkExtensionsTest(unittest.TestCase):
 
     def __init__(self):
         pass
+
+    def test_network_extension(self):
+        self.shortDescription="Dummy test."
+        self.assertEqual(True, True, "Dummy test.")
