@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # Create a test list
     tests = [
         PreflightTest, HCXSaasAdapaterTest,
-        SitePairsTest,NetworkExtensionsTest
+        SitePairsTest, NetworkExtensionsTest
     ]
     # Load test cases
     loader = unittest.TestLoader()
