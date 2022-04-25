@@ -26,5 +26,5 @@ class SitePairsTest(unittest.TestCase):
         pass
 
     def test_pair_sites(self):
-        self.shortDescription("Dumy test for pairing sites.")
+        self.shortDescription="Dumy test for pairing sites."
         self.assertEqual(True, True, "Dummy test for pairing.")

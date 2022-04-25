@@ -41,7 +41,7 @@ class HCXSaasAdapaterTest(unittest.TestCase):
 
     #@unittest.skipIf(not hcx_service_enabled_onprem or not_onboarded_onprem, "Onprem HCX service disabled or already onboarded")
     def test_registe_site_onprem(self):
-        self.description="Obtain manifest ID and register this site %s to HCX Saas portal."%self.onprem_hsm.host
+        self.description = "Obtain manifest ID and register this site %s to HCX Saas portal."%self.onprem_hsm.host
         hcx_service_enabled_onprem = self.onprem_hsm.is_HCX_service_enabled()
         if  not hcx_service_enabled_onprem:
             logger.info("Onprem HCX service disabled or already onboarded")
