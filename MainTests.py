@@ -38,7 +38,8 @@ if __name__ == '__main__':
                                                description=get_description())
     # Create a test list
     tests = [
-        PreflightTest, HCXSaasAdapaterTest
+        PreflightTest, HCXSaasAdapaterTest,
+        SitePairsTest,NetworkExtensionsTest
     ]
     # Load test cases
     loader = unittest.TestLoader()
