@@ -1,3 +1,4 @@
+import os
 import unittest
 
 import lib.HTMLTestRunner
@@ -9,10 +10,11 @@ from test.suites.HCXSaasAdapterTest import HCXSaasAdapaterTest
 
 
 def get_attrs():
+    build=os.getenv('BUILD_NUMBER')
     g2attrs = [
         ('Project Name', 'HCX Saas Automation'),
         ('Responsible Team', 'HCX Saas Team'),
-        ('Build Number', '42'),
+        ('Build Number', build),
 
     ]
     g3attrs = [
