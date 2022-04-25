@@ -32,7 +32,7 @@ def get_description():
 
 if __name__ == '__main__':
     # Create the report file
-    html_report = open('report/test_report.html', 'wb')
+    html_report = open('report/test_reports.html', 'wb')
     # Create the runner and set the file as output and higher verbosity
     runner = lib.HTMLTestRunner.HTMLTestRunner(stream=html_report, verbosity=2, attrs=get_attrs(),
                                                description=get_description())
