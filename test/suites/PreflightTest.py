@@ -26,7 +26,7 @@ ch.setFormatter(format)
 logger.addHandler(ch)
 """Set up local logger End"""
 
-class PreflightTestCase(unittest.TestCase):
+class PreflightTest(unittest.TestCase):
 
     def setUp(self):
         self.precheck = False
@@ -109,7 +109,7 @@ if __name__ == '__main__':
         test_list.append(cases)
     suite = unittest.TestSuite(test_list)
     '''
-    suite = unittest.TestLoader().loadTestsFromTestCase(PreflightTestCase)
+    suite = unittest.TestLoader().loadTestsFromTestCase(PreflightTest)
     # Run the suite
     runner.run(suite)
 

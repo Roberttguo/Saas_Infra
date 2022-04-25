@@ -19,14 +19,7 @@ ch.setFormatter(format)
 logger.addHandler(ch)
 """Set up local logger End"""
 
-'''
-BASE_HCX_API = "/hybridity/api"
-HCX_SESSION = BASE_HCX_API+"/sessions"
-HCX_SAAS_SITE = BASE_HCX_API+"/saas/site"
-CSP_TOKEN_URI="/csp/gateway/am/api/auth/api-tokens/authorize?refresh_token=%s"
-CSP_URL="console-stg.cloud.vmware.com"
-'''
-
+ssl._create_default_https_context = ssl._create_unverified_context
 
 class RestBase(object):
     def __init__(self, host, user, password):
@@ -34,12 +27,13 @@ class RestBase(object):
         self.user = user
         self.password = password
         self.api_url = None
+        logger.info("Type of self.host: %s" % type(self.host))
         if isinstance(self.host, dict):
             if 'fqdn' in self.host:
                 self.api_url = "https://%s" % (self.host['fqdn'])
             else:
                 self.api_url = "https://%s" % (self.host['ip'])
-        if isinstance(self.host, str):
+        if isinstance(self.host, str) or isinstance(self.host, unicode):
             self.api_url = "https://%s" % (self.host)
 
         self.headers = {
@@ -73,6 +67,7 @@ class RestBase(object):
             headers = self.headers
         if url.find('://') == -1:
             url = self.api_url + url
+        logger.info("url = %s and headers= %s" % (url, headers))
         req = urllib2.Request(url, json.dumps(data), headers)
         req.get_method = lambda: method
         try:
@@ -82,7 +77,7 @@ class RestBase(object):
             logger.error('error %s' % ex)
             if ex.getcode() == 409:  # old site exists, conflict error
                 logger.warning("Error code=409, possibly caused by a conflict with current state. heards=%s" % headers)
-                return
+                raise ex
             if ex.getcode() == 401:
                 logger.warning("Connection timed out, try reconnecting")
                 self.x_hm_authorization = self.get_session_token()
@@ -94,7 +89,7 @@ class RestBase(object):
                     logger.warning("Error code %s, retrying..." % (ex.getcode()))
                 else:
                     logger.error("Error: %s" % ex)
-                    raise ex
+                raise ex
         except Exception as ex:
             exc_type, exc_value, exc_traceback = sys.exc_info()
             msg = 'non-http exception "%s" (%s/30)'
