@@ -193,9 +193,9 @@ if __name__ == '__main__':
     else:
         print ("not onboarded %s" % u.host)
     exit(0)
-    o = HCXSaasRestExt("hcx-hcxaas-guot2-ds-nsbu01-stg-nsbu02-us-west-2.vdp-int-stg.vmware.com", \
-                       "https://console-stg.cloud.vmware.com",
-                       "96kZqY03yCH9wPxqaS7gfEk1gitWi3iCMg7iFoWAEoi-yYqXgPURAd56qaUjyWmI")
+    o = HCXSaasRestExt("mytest_site.com", \
+                       "https://my_test.com",
+                       "key_xxxxx")
 
     site_name, manifest = o.get_site_onboard_manifestId("onprem" + "_" + u.host)
     logger.info("manifest: %s,site_name: %s" % (manifest, site_name))
