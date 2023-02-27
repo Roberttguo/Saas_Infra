@@ -189,18 +189,18 @@ class HCXSaasRestExt(RestBase):
 
 if __name__ == '__main__':
     ssl._create_default_https_context = ssl._create_unverified_context
-    u = HCXSaasRestExt("hcx-hcxaas-guot2-ds-nsbu01-stg-nsbu02-us-west-2.vdp-int-stg.vmware.com",\
-                       "https://console-stg.cloud.vmware.com",\
-                       "96kZqY03yCH9wPxqaS7gfEk1gitWi3iCMg7iFoWAEoi-yYqXgPURAd56qaUjyWmI")
+    u = HCXSaasRestExt("mysaas_url.com",\
+                       "https://mysaas.com",\
+                       "xxxxxxxx")
 
-    jdata = u.get_registered_sites( "6d2918d8-b939-49ed-931f-796e1c5057e2")
+    jdata = u.get_registered_sites( "test_id2")
     print ("returned data type: ", type(jdata))
     print u.query_site_Ids("6d2918d8-b939-49ed-931f-796e1c5057e2", "DISCONNECTED")
 
     print "total sites: ", u.size_of_sites("6d2918d8-b939-49ed-931f-796e1c5057e2")
     exit(0)
-    #u.cleanup_sites("hcx-hcxaas-guot2-ds-nsbu01-stg-nsbu02-us-west-2.vdp-int-stg.vmware.com", "6d2918d8-b939-49ed-931f-796e1c5057e2", "CONNECTED")
-    dev_stack="hcx-hcxaas-guot2-ds-nsbu01-stg-nsbu02-us-west-2.vdp-int-stg.vmware.com"
+    #u.cleanup_sites("mytest_site.com", "6d2918d8-b939-49ed-931f-796e1c5057e2", "CONNECTED")
+    dev_stack="mytest_site.com"
     site_name="Tian_test2"
     res=u.get_site_onboard_manifestId(dev_stack, site_name)
     print "res=", res
